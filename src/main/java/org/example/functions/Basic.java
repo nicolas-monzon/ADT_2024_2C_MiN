@@ -1,20 +1,51 @@
 package org.example.functions;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Basic {
 
     public static void counter() {
-        int i = 0;
-        while(i < 15) {
-            //
-            i++;
-        }
+        int count = 0;
+        for(int i = 0; i < 10; i += 2) {
 
-        for(int j = 0; j < 15; j++) {
-            //
         }
+    }
+
+    public static void listVsArray() { // Principio de superposición de Liskov (L en SOLID)
+        // lista mutable
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(2);
+
+        // lista inmutable
+        List<Integer> list2 = List.of(1, 2, 3, 4);
+        list2.add(2);
+
+        int[] array = new int[5];
+
+        Object[] array2 = list.toArray();
+    }
+    public static void total() {
+        boolean[] values = new boolean[7];
+        values[4] = true;
+
+        boolean total = false;
+        for(int i = 0; i < values.length; i += 2) {
+            total = total || values[i];
+        }
+    }
+
+    public static void print(int[] values) {
+        System.out.print("[");
+        for(int i = 0; i < values.length; i++) {
+            System.out.print(values[i]);
+            if(i != values.length - 1) {
+                System.out.print(", ");
+            }
+        }
+        System.out.print("]");
     }
 
     public static void wrapper() {
