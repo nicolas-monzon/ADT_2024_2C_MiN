@@ -1,30 +1,19 @@
 package org.example;
 
-import org.example.clazz.Persona;
-import org.example.functions.Basic;
+import org.example.adt.NormalStack;
+import org.example.adt.Stack;
+import org.example.utils.StackUtil;
 
 public class Main {
     public static void main(String[] args) {
-        Persona persona = new Persona();
-        persona.nombre = "Claudio";
-        persona.dni = 40000000;
-        Persona persona2 = new Persona();
-        persona2.nombre = "Jose";
-        persona2.dni = 40000001;
-        persona = persona2;
-        persona.nombre = "Mariano";
-        System.out.println(persona2.nombre);
-        System.out.println(persona.nombre);
+        Stack normalStack = new NormalStack();
+        normalStack.add(0);
+        normalStack.add(1);
+        normalStack.add(2);
+        normalStack.add(3);
+
+        StackUtil.sum(normalStack);
+        StackUtil.sum(normalStack);
     }
-
-    public static Persona copy(Persona persona) {
-        Persona copy = new Persona();
-        copy.nombre = persona.nombre;
-        copy.apellido = persona.apellido;
-        copy.dni = persona.dni;
-        return copy;
-    }
-
-
 
 }
