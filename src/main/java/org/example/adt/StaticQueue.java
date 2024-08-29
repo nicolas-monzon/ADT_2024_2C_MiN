@@ -1,23 +1,23 @@
 package org.example.adt;
 
-public class NormalStack implements Stack {
+public class StaticQueue implements Queue {
 
     private static final int MAX = 10000;
 
     private final int[] array;
     private int count;
 
-    public NormalStack() {
+    public StaticQueue() {
         this.array = new int[MAX];
         this.count = 0;
     }
 
     @Override
-    public int getTop() {
+    public int getFirst() {
         if(isEmpty()) {
             throw new RuntimeException("No se puede obtener el tope una pila vacia");
         }
-        return array[this.count - 1];
+        return array[0];
     }
 
     @Override
@@ -25,13 +25,19 @@ public class NormalStack implements Stack {
         if(isEmpty()) {
             throw new RuntimeException("No se puede obtener el tope una pila vacia");
         }
+        // [1, 2, 3, 0, 0, ...]
+        // [2, 2, 3, 0, 0, ...]
+        // [2, 3, 3, 0, 0, ...]
+        for(int i = 0; i < count - 1; i++) {
+            this.array[i] = this.array[i+1];
+        }
         count--;
     }
 
     @Override
     public void add(int value) {
         if(this.count == MAX) {
-            throw new RuntimeException("La pila esta llena");
+            throw new RuntimeException("La cola esta llena");
         }
         this.array[this.count] = value;
         this.count++;
