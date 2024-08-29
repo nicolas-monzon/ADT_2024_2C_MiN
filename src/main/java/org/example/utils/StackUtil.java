@@ -1,6 +1,6 @@
 package org.example.utils;
 
-import org.example.adt.NormalStack;
+import org.example.adt.StaticStack;
 import org.example.adt.Stack;
 
 public class StackUtil {
@@ -24,8 +24,8 @@ public class StackUtil {
     }
 
     public static Stack copy(Stack stack) {
-        Stack aux = new NormalStack();
-        Stack aux2 = new NormalStack();
+        Stack aux = new StaticStack();
+        Stack aux2 = new StaticStack();
 
         while(!stack.isEmpty()) {
             aux.add(stack.getTop());
@@ -47,8 +47,8 @@ public class StackUtil {
     }
 
     public static Stack copy2(Stack stack) {
-        Stack aux = new NormalStack();
-        Stack aux2 = new NormalStack();
+        Stack aux = new StaticStack();
+        Stack aux2 = new StaticStack();
 
         while(!stack.isEmpty()) {
             aux.add(stack.getTop());
@@ -66,8 +66,8 @@ public class StackUtil {
 
     public static Stack notRepeatedElements(Stack stack) {
         Stack copy = copy(stack);
-        Stack candidate = new NormalStack();
-        Stack aux = new NormalStack();
+        Stack candidate = new StaticStack();
+        Stack aux = new StaticStack();
         while(!copy.isEmpty()) {
             candidate.add(copy.getTop());
             copy.remove();
@@ -88,11 +88,37 @@ public class StackUtil {
     }
 
     public static boolean esCapicua(Stack stack) {
-        return false;
+        Stack copy = copy(stack);
+        return esCapicuaAux(copy);
+    }
+
+    private static boolean esCapicuaAux(Stack stack) {
+        Stack aux = copy(stack);
+        Stack aux2 = new StaticStack();
+
+        while(!aux.isEmpty()) {
+            aux2.add(aux.getTop());
+            aux.remove();
+        }
+
+        if(!aux2.isEmpty()) {
+            while (aux2.getTop() == stack.getTop()) {
+                aux2.remove();
+                stack.remove();
+            }
+        }
+
+        return aux.isEmpty();
     }
 
     public static Stack revert(Stack stack) {
-        return null;
-    }
+        Stack copy = copy2(stack);
+        Stack reverse = new StaticStack();
 
+        while(!copy.isEmpty()) {
+            reverse.add(copy.getTop());
+            copy.remove();
+        }
+        return reverse;
+    }
 }
