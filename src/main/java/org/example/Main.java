@@ -1,19 +1,17 @@
 package org.example;
 
+import org.example.adt.PriorityQueue;
+import org.example.adt.StaticPriorityQueue;
 import org.example.adt.StaticStack;
 import org.example.adt.Stack;
 import org.example.utils.StackUtil;
 
 public class Main {
     public static void main(String[] args) {
-        Stack normalStack = new StaticStack();
-        normalStack.add(0);
-        normalStack.add(1);
-        normalStack.add(2);
-        normalStack.add(3);
-
-        StackUtil.sum(normalStack);
-        StackUtil.sum(normalStack);
+        PriorityQueue priorityQueue = new StaticPriorityQueue();
+        priorityQueue.add(1, 2);
+        priorityQueue.add(3, 4);
+        priorityQueue.remove();
     }
 
 }
