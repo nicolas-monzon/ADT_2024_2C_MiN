@@ -15,7 +15,7 @@ public class StaticQueue implements Queue {
     @Override
     public int getFirst() {
         if(isEmpty()) {
-            throw new RuntimeException("No se puede obtener el tope una pila vacia");
+            throw new RuntimeException("No se puede obtener el primero de una cola vacia");
         }
         return array[0];
     }
@@ -23,11 +23,8 @@ public class StaticQueue implements Queue {
     @Override
     public void remove() {
         if(isEmpty()) {
-            throw new RuntimeException("No se puede obtener el tope una pila vacia");
+            throw new RuntimeException("No se puede obtener el primero de una cola vacia");
         }
-        // [1, 2, 3, 0, 0, ...]
-        // [2, 2, 3, 0, 0, ...]
-        // [2, 3, 3, 0, 0, ...]
         for(int i = 0; i < count - 1; i++) {
             this.array[i] = this.array[i+1];
         }

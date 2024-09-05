@@ -16,7 +16,7 @@ public class QueueUtil {
         }
 
         while(!aux.isEmpty()) {
-            copy.add(queue.getFirst());
+            copy.add(aux.getFirst());
             queue.add(aux.getFirst());
             aux.remove();
         }
