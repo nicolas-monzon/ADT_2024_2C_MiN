@@ -88,4 +88,16 @@ public class SetUtil {
         }
     }
 
+    public static boolean subseteq(Set set, Set set2) {
+        Set copy = copy(set);
+        while(!copy.isEmpty()) {
+            int element = copy.choose();
+            if(!in(element,set2)){
+                return false;
+            }
+            copy.remove(element);
+        }
+        return true;
+    }
+
 }

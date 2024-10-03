@@ -38,7 +38,7 @@ public class StaticStack implements Stack {
     }
 
     @Override
-    public boolean isEmpty() {
-        return this.count == 0;
+    public boolean isEmpty() { // C
+        return this.count == 0; // C
     }
 }
