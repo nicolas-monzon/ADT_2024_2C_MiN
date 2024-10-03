@@ -10,16 +10,16 @@ public class Node {
         this.next = next;
     }
 
-    public int getValue() {
-        return value;
+    public int getValue() { // C
+        return value; // C
     }
 
     public void setValue(int value) {
         this.value = value;
     }
 
-    public Node getNext() {
-        return next;
+    public Node getNext() { // C
+        return next; // C
     }
 
     public void setNext(Node next) {

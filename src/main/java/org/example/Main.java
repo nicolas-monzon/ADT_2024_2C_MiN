@@ -1,17 +1,17 @@
 package org.example;
 
-import org.example.adt.PriorityQueue;
-import org.example.adt.StaticPriorityQueue;
-import org.example.adt.StaticStack;
-import org.example.adt.Stack;
-import org.example.utils.StackUtil;
+import org.example.adt.Dictionary;
+import org.example.adt.StaticDictionary;
+import org.example.utils.DictionaryUtil;
 
 public class Main {
     public static void main(String[] args) {
-        PriorityQueue priorityQueue = new StaticPriorityQueue();
-        priorityQueue.add(1, 2);
-        priorityQueue.add(3, 4);
-        priorityQueue.remove();
+        Dictionary dictionary = new StaticDictionary();
+        dictionary.add(1, 1);
+        dictionary.add(2, 4);
+        dictionary.add(3, 9);
+        DictionaryUtil.print(dictionary);
+        DictionaryUtil.print(dictionary);
     }
 
 }

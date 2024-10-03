@@ -7,28 +7,32 @@ public class DynamicStack implements Stack {
     private Node first;
 
     @Override
-    public int getTop() {
-        if(this.isEmpty()) {
-            throw new RuntimeException("No se puede desapilar una pila vacia");
+    public int getTop() { // C + C = C
+        if(this.isEmpty()) { // C
+            throw new RuntimeException("No se puede desapilar una pila vacia"); // C
+        } else {
+            return this.first.getValue(); // N
         }
-        return this.first.getValue();
     }
 
+    // C, LOG(N), N, N LOG(N), N^2, N^3, ...., N^M, 2^N, 3^N, ..., P^N, N!
+
     @Override
-    public void remove() {
+    public void remove() { // C + C = C
         if(this.isEmpty()) {
-            throw new RuntimeException("No se puede desapilar una pila vacia");
+            throw new RuntimeException("No se puede desapilar una pila vacia"); // C
+        } else {
+            this.first = this.first.getNext(); // C
         }
-        this.first = this.first.getNext();
     }
 
     @Override
-    public void add(int value) {
-        this.first = new Node(value, this.first);
+    public void add(int value) { // C
+        this.first = new Node(value, this.first); // C
     }
 
     @Override
-    public boolean isEmpty() {
-        return this.first == null;
+    public boolean isEmpty() { // C
+        return this.first == null; // C
     }
 }
