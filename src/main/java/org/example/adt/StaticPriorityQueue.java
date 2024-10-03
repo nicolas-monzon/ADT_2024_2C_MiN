@@ -62,11 +62,6 @@ public class StaticPriorityQueue implements PriorityQueue {
             return;
         }
 
-        // val = [4, 2, 3, 1, 6, 0, 0, 0, ...
-        // pri = [1, 2, 3, 4, 5, 0, 0, 0, ...
-
-        // val = [8, 4, 2, 3, 1, 6, 0, 0, ...
-        // pri = [0, 1, 2, 3, 4, 5, 0, 0, ...
         if(this.priorities[0] > priority) {
             for(int i = this.count; i > 0; i--) {
                 this.values[i] = this.values[i-1];
@@ -80,7 +75,7 @@ public class StaticPriorityQueue implements PriorityQueue {
 
         int index = -1;
         for(int i = 1; i < this.count; i++) {
-            if(this.priorities[i - 1] <= priority && this.priorities[i + 1] > priority) {
+            if(this.priorities[i - 1] <= priority && this.priorities[i] > priority) {
                 index = i;
                 break;
             }
