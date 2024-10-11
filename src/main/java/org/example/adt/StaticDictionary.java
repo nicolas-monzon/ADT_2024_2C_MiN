@@ -14,6 +14,9 @@ public class StaticDictionary implements Dictionary {
 
     @Override
     public void add(int key, int value) {
+        if(this.count == MAX) {
+            throw new RuntimeException("No hay espacio disponible para una clave nueva");
+        }
         if(this.count == 0) {
             this.values[0][0] = key;
             this.values[0][1] = value;

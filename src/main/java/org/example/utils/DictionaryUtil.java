@@ -1,9 +1,8 @@
 package org.example.utils;
 
-import org.example.adt.Dictionary;
-import org.example.adt.Set;
-import org.example.adt.StaticDictionary;
-import org.example.adt.StaticSet;
+import org.example.adt.*;
+
+import java.util.List;
 
 public class DictionaryUtil {
 
@@ -126,6 +125,35 @@ public class DictionaryUtil {
         return true;
     }
 
+    // TODO falta usar copias
+    public static MultipleDictionary union(MultipleDictionary m1, MultipleDictionary m2) {
+        if(m1 == null || m2 == null) {
+            return null;
+        }
+        if(m1 == null) {
+            return m2;
+        }
+        if(m2 == null) {
+            return m1;
+        }
+        Set m1Keys = m1.getKeys();
+        if(m1Keys.isEmpty()) {
+            return m2;
+        }
+        Set m2Keys = m2.getKeys();
+        if(m2Keys.isEmpty()) {
+            return m1;
+        }
 
+        while(!m2Keys.isEmpty()) {
+            int key = m2Keys.choose();
+            List<Integer> values = m2.get(key);
+            for (Integer value : values) {
+                m1.add(key, value);
+            }
+            m2Keys.remove(key);
+        }
+        return m1;
+    }
 
 }
