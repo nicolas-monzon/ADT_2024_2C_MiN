@@ -156,4 +156,65 @@ public class DictionaryUtil {
         return m1;
     }
 
+    public static Dictionary union(Dictionary d1, Dictionary d2) {
+        if(d1 == null || d2 == null) {
+            return null;
+        }
+        if(d1 == null) {
+            return d2;
+        }
+        if(d2 == null) {
+            return d1;
+        }
+        Set d1Keys = d1.getKeys();
+        if(d1Keys.isEmpty()) {
+            return d2;
+        }
+        Set d2Keys = d2.getKeys();
+        if(d2Keys.isEmpty()) {
+            return d1;
+        }
+
+        Set intersection = SetUtil.intersection(d1Keys, d2Keys);
+        if(!intersection.isEmpty()) {
+            while(!intersection.isEmpty()) {
+                int key = intersection.choose();
+                if(d1.get(key) != d2.get(key)) {
+                    throw new RuntimeException("No se pueden unir los diccionarios porque existe al menos una clave con un valor asociado distinto");
+                }
+                intersection.remove(key);
+            }
+        }
+
+        Set d1KeysAux = d1.getKeys();
+        while(!d2Keys.isEmpty()) {
+            int key = d2Keys.choose();
+            if(SetUtil.in(key, d1KeysAux)) {
+                continue;
+            }
+            d1KeysAux.add(key);
+            d1.add(key, d2.get(key));
+            d2Keys.remove(key);
+        }
+        return d1;
+    }
+
+    public static Dictionary diferencia(Dictionary d1, Dictionary d2) {
+        Dictionary diferencia = new StaticDictionary();
+        d2 = intersectionV1(d1, d2);
+        Set d1keys = d1.getKeys();
+        while (!d1keys.isEmpty()) {
+            int key = d1keys.choose();
+            if (d2.get(key) != d1.get(key)) {
+                diferencia.add(key, d1.get(key));
+            }
+            d1keys.remove(key);
+        }
+        return diferencia;
+    }
+
+    public static Dictionary diferenciaSimetrica(Dictionary d1, Dictionary d2) {
+        return diferencia(union(d1, d2), intersectionV1(d1, d2));
+    }
+
 }

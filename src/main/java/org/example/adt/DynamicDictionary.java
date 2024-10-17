@@ -8,24 +8,23 @@ public class DynamicDictionary implements Dictionary {
     private KeyNode first;
 
     @Override
-    public void add(int key, int value) {
+    public void add(int key, int value) { // O(N)
         if(this.first == null) {
             this.first = new KeyNode(key, new ValueNode(value, null), null);
-            return;
-        }
-
-        KeyNode current = this.first;
-        while(current.getNext() != null) {
-            if(current.getKey() == key) {
-                if(current.getValueNode().getValue() == value) {
-                    return;
+        } else {
+            KeyNode current = this.first;
+            while (current.getNext() != null) {
+                if (current.getKey() == key) {
+                    if (current.getValueNode().getValue() == value) {
+                        return;
+                    }
+                    throw new RuntimeException("Ya existe una par clave-valor diferente");
                 }
-                throw new RuntimeException("Ya existe una par clave-valor diferente");
+                current = current.getNext();
             }
-            current = current.getNext();
-        }
 
-        current.setNext(new KeyNode(key, new ValueNode(value, null), null));
+            current.setNext(new KeyNode(key, new ValueNode(value, null), null));
+        }
     }
 
     @Override
