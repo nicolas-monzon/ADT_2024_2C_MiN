@@ -32,7 +32,7 @@ public class DynamicSearchBinaryTree implements SearchBinaryTree {
             if(this.binaryTree.getRight() == null) {
                 this.binaryTree.addRight(value);
             } else {
-                this.getLeft().add(value);
+                this.getRight().add(value);
             }
         }
     }
